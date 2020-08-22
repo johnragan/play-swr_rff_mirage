@@ -1,24 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import epcot from "./photos/Epcot_mono_5x2.png";
+import "./App.css";
+import Login from "./components/login/login";
+import Header from "./components/header/header";
+import { Typography } from "@material-ui/core";
 
+// TODO: Convert all this to typescript
+// TODO: Get linting set up as in package
+// TODO: Add support for routing for sign-in
+// TODO: Add support for Husky
+// TODO: Add support for Storybook
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Login />
+      <img src={epcot} className="App-epcot" alt="epcot" />
+      <Typography variant="h6">Your Ultimate WDW Planning Resource</Typography>
     </div>
   );
 }
