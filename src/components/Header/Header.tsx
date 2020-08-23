@@ -25,17 +25,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// export interface Page {
-//   link: string;
-// }
+type Props = {
+  link: string;
+};
 
-// type Props = {
-//   pageDetails: Page;
-// };
-
-//const Header: React.FC<Props> = ({ pageDetails }) => {
-// @ts-ignore
-const Header = ({ link }) => {
+const Header: React.FC<Props> = ({ link }) => {
   const classes = useStyles();
   const history = useHistory();
 
