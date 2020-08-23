@@ -5,7 +5,6 @@ import Login from "./components/Login/Login";
 import Header from "./components/Header/Header";
 import { Typography } from "@material-ui/core";
 
-// TODO: Convert all this to typescript
 // TODO: Add support for routing for sign-in
 // TODO: Add support for Storybook
 function App() {
