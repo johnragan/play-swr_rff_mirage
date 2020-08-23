@@ -23,9 +23,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:coverage": "react-scripts test --coverage --watchAll=false",
+    "test:lint": "react-scripts test --watchAll=false",
     "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
-    "lint": "eslint src --max-warnings=0 --ext js,jsx,ts,tsx",
-    "lint:fix": "eslint src --max-warnings=0 --ext js,jsx,ts,tsx --fix"
+    "lint:files": "eslint src --max-warnings=0 --ext js,jsx,ts,tsx",
+    "lint:fix": "eslint src --max-warnings=0 --ext js,jsx,ts,tsx --fix",
+    "lint": "yarn lint:files && yarn test:lint"
   },
   "eslintConfig": {
     "extends": "react-app"
