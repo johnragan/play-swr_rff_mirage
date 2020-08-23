@@ -1,9 +1,9 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import Login from "./Login";
+import LoginScreen from "./LoginScreen";
 
 test("renders Sign in", () => {
-  const { getByText } = render(<Login />);
+  const { getByText } = render(<LoginScreen />);
   const element = getByText(/Sign in/);
   expect(element).toBeInTheDocument();
 });

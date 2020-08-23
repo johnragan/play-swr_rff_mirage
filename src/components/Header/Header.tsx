@@ -10,6 +10,8 @@ import {
 } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
 
+import { config } from "../../config";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -39,7 +41,14 @@ export default function Header() {
         <Typography variant="h6" className={classes.title}>
           Make a Walt Disney World Reservation
         </Typography>
-        <Button color="inherit">My Disney Experience</Button>
+        <Button
+          color="inherit"
+          onClick={() => {
+            window.location.href = `/${config.basename}/login`;
+          }}
+        >
+          My Disney Experience
+        </Button>
       </Toolbar>
     </AppBar>
   );
