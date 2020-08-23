@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -10,7 +11,7 @@ import {
 } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
 
-import { config } from "../../config";
+//import { config } from "../../config";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,8 +25,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Header() {
+// export interface Page {
+//   link: string;
+// }
+
+// type Props = {
+//   pageDetails: Page;
+// };
+
+//const Header: React.FC<Props> = ({ pageDetails }) => {
+// @ts-ignore
+const Header = ({ link }) => {
   const classes = useStyles();
+  const history = useHistory();
 
   return (
     <AppBar position="static">
@@ -43,8 +55,8 @@ export default function Header() {
         </Typography>
         <Button
           color="inherit"
-          onClick={() => {
-            window.location.href = `/${config.basename}/login`;
+          onClick={(): void => {
+            history.push(`${link}`);
           }}
         >
           My Disney Experience
@@ -52,4 +64,6 @@ export default function Header() {
       </Toolbar>
     </AppBar>
   );
-}
+};
+
+export default Header;
