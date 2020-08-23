@@ -43,6 +43,12 @@
     ]
   },
   "devDependencies": {
+    "husky": "^4.2.5",
     "miragejs": "^0.1.40"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint"
+    }
   }
 }
