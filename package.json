@@ -34,7 +34,9 @@
     "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
     "lint:files": "eslint src --max-warnings=0 --ext js,jsx,ts,tsx",
     "lint:fix": "eslint src --max-warnings=0 --ext js,jsx,ts,tsx --fix",
-    "lint": "yarn lint:files && yarn test:lint"
+    "lint": "yarn lint:files && yarn test:lint",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -52,8 +54,17 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.11.4",
+    "@storybook/addon-actions": "^6.0.16",
+    "@storybook/addon-essentials": "^6.0.16",
+    "@storybook/addon-links": "^6.0.16",
+    "@storybook/node-logger": "^6.0.16",
+    "@storybook/preset-create-react-app": "^3.1.4",
+    "@storybook/react": "^6.0.16",
+    "babel-loader": "^8.1.0",
     "husky": "^4.2.5",
-    "miragejs": "^0.1.40"
+    "miragejs": "^0.1.40",
+    "react-is": "^16.13.1"
   },
   "husky": {
     "hooks": {
