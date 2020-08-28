@@ -26,12 +26,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 type Props = {
-  link: string;
+  link?: string;
+  onMDEClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
 
-const Header: React.FC<Props> = ({ link }) => {
+const Header: React.FC<Props> = ({ onMDEClick=null }) => {
   const classes = useStyles();
   const history = useHistory();
+
+  const link = "/login";
+  const goToLogin = (): void => {
+    history.push(`${link}`);
+  }
 
   return (
     <AppBar position="static">
@@ -49,9 +55,7 @@ const Header: React.FC<Props> = ({ link }) => {
         </Typography>
         <Button
           color="inherit"
-          onClick={(): void => {
-            history.push(`${link}`);
-          }}
+          onClick={onMDEClick ? onMDEClick :goToLogin}
         >
           My Disney Experience
         </Button>

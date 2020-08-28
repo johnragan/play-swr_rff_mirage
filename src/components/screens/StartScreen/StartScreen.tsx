@@ -7,7 +7,7 @@ import Header from "../../Header/Header";
 export default function StartScreen() {
   return (
     <React.Fragment>
-      <Header link="/login" />
+      <Header />
       <img src={epcot} className="App-epcot" alt="epcot" />
       <Typography variant="h6">Your Ultimate WDW Planning Resource</Typography>
     </React.Fragment>

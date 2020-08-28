@@ -10,12 +10,8 @@ export default {
   excludeStories: /.*Data$/,
 };
 
-export const headerData = {
-  link: "disney.com",
-};
-
 export const actionsData = {
   onMDEClick: action("onMDEClick"),
 };
 
-export const Default = () => <Header {...headerData} {...actionsData} />;
+export const Default = () => <Header {...actionsData} />;
