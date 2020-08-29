@@ -3,8 +3,9 @@ import "./App.css";
 
 import { SelectRouter } from "./routes/SelectRouter";
 
-// TODO: Add support for Storybook
+// TODO: Add support for storybook tests
 // TODO: Integrate the new Style guide in
+// TODO: Convert stories to Typescript
 
 function App() {
   return (

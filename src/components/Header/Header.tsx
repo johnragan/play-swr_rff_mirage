@@ -11,8 +11,6 @@ import {
 } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
 
-//import { config } from "../../config";
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -30,14 +28,14 @@ type Props = {
   onMDEClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
 
-const Header: React.FC<Props> = ({ onMDEClick=null }) => {
+const Header: React.FC<Props> = ({ onMDEClick = null }) => {
   const classes = useStyles();
   const history = useHistory();
 
   const link = "/login";
   const goToLogin = (): void => {
     history.push(`${link}`);
-  }
+  };
 
   return (
     <AppBar position="static">
@@ -53,10 +51,7 @@ const Header: React.FC<Props> = ({ onMDEClick=null }) => {
         <Typography variant="h6" className={classes.title}>
           Make a Walt Disney World Reservation
         </Typography>
-        <Button
-          color="inherit"
-          onClick={onMDEClick ? onMDEClick :goToLogin}
-        >
+        <Button color="inherit" onClick={onMDEClick ? onMDEClick : goToLogin}>
           My Disney Experience
         </Button>
       </Toolbar>
