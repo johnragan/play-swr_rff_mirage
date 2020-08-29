@@ -1,5 +1,5 @@
 module.exports = {
-  stories: ["../src/components/**/*.stories.js"],
+  stories: ["../src/components/**/*.stories.(js|tsx)"],
   addons: [
     "@storybook/preset-create-react-app",
     "@storybook/addon-actions",
@@ -12,6 +12,16 @@ module.exports = {
       },
     },
   ],
+  typescript: {
+    check: false,
+    checkOptions: {},
+    reactDocgen: "react-docgen-typescript",
+    reactDocgenTypescriptOptions: {
+      shouldExtractLiteralValuesFromEnum: true,
+      propFilter: (prop) =>
+        prop.parent ? !/node_modules/.test(prop.parent.fileName) : true,
+    },
+  },
 };
 
 // npx -p @storybook/cli sb init
