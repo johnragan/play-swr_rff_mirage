@@ -4,6 +4,7 @@ import epcot from "../../..//photos/Epcot_mono_5x2.png";
 import { Typography } from "@material-ui/core";
 
 import Header from "../../Header/Header";
+import { UnauthenticatedAppRoutes } from "../../../routes/AppRoutes";
 
 // TODO: Should this action be pushed into the component, or embedded in
 // the component itself?  What about other actions in this component's
@@ -12,7 +13,7 @@ import Header from "../../Header/Header";
 export default function StartScreen() {
   const history = useHistory();
   const goToSignInPage = (): void => {
-    history.push("/login");
+    history.push(UnauthenticatedAppRoutes.Login);
   };
 
   return (

@@ -19,7 +19,10 @@ export const Router: FC = () => {
           exact
           path={UnauthenticatedAppRoutes.Login}
           children={
-            <LoginScreen signUp="/signup" passwordReset="/passwordReset" />
+            <LoginScreen
+              signUp={UnauthenticatedAppRoutes.SignUp}
+              passwordReset={UnauthenticatedAppRoutes.PasswordReset}
+            />
           }
           title={`${config.appTitle} - Login`}
         />
