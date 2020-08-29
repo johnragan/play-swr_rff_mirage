@@ -1,11 +1,13 @@
 export const UnauthenticatedAppRoutes = {
   Login: "/login",
   Start: "/start",
+  SignUp: "/signup",
 };
 
 export const AuthenticatedAppRoutes = {
   Start: "/start",
   Login: "/login",
+  SignUp: "/signup",
   Home: "/home",
 };
 

@@ -5,16 +5,19 @@ import { Typography } from "@material-ui/core";
 
 import Header from "../../Header/Header";
 
+// TODO: Should this action be pushed into the component, or embedded in
+// the component itself?  What about other actions in this component's
+// children?
+
 export default function StartScreen() {
   const history = useHistory();
-  const link = "/login";
-  const goToLogin = (): void => {
-    history.push(`${link}`);
+  const goToSignInPage = (): void => {
+    history.push("/login");
   };
 
   return (
     <React.Fragment>
-      <Header onMDEClick={goToLogin} />
+      <Header onMDEClick={goToSignInPage} />
       <img src={epcot} className="App-epcot" alt="epcot" />
       <Typography variant="h6">Your Ultimate WDW Planning Resource</Typography>
     </React.Fragment>

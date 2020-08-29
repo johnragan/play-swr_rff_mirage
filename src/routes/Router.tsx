@@ -7,25 +7,36 @@ import StartScreen from "../components/screens/StartScreen/StartScreen";
 import { config } from "../config";
 import { UnauthenticatedAppRoutes } from "./AppRoutes";
 import LoginScreen from "../components/screens/LoginScreen/LoginScreen";
+import SignUpScreen from "../components/screens/SignUpScreen/SignUpScreen";
 
 import { Route } from "./Route";
 
-export const Router: FC = () => (
-  <BrowserRouter basename={config.basename}>
-    <Switch>
-      <Route
-        exact
-        path={UnauthenticatedAppRoutes.Login}
-        children={<LoginScreen />}
-        title={`${config.appTitle} - Login`}
-      />
-      <Route
-        exact
-        path={UnauthenticatedAppRoutes.Start}
-        children={<StartScreen />}
-        title={`${config.appTitle} - Start`}
-      />
-      <Redirect to={UnauthenticatedAppRoutes.Start} />
-    </Switch>
-  </BrowserRouter>
-);
+export const Router: FC = () => {
+  return (
+    <BrowserRouter basename={config.basename}>
+      <Switch>
+        <Route
+          exact
+          path={UnauthenticatedAppRoutes.Login}
+          children={
+            <LoginScreen signUp="/signup" passwordReset="/passwordReset" />
+          }
+          title={`${config.appTitle} - Login`}
+        />
+        <Route
+          exact
+          path={UnauthenticatedAppRoutes.SignUp}
+          children={<SignUpScreen />}
+          title={`${config.appTitle} - Login`}
+        />
+        <Route
+          exact
+          path={UnauthenticatedAppRoutes.Start}
+          children={<StartScreen />}
+          title={`${config.appTitle} - Start`}
+        />
+        <Redirect to={UnauthenticatedAppRoutes.Start} />
+      </Switch>
+    </BrowserRouter>
+  );
+};
