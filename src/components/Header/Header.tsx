@@ -1,5 +1,4 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -24,18 +23,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 type Props = {
-  link?: string;
   onMDEClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
 
-const Header: React.FC<Props> = ({ onMDEClick = null }) => {
+const Header: React.FC<Props> = ({ onMDEClick }) => {
   const classes = useStyles();
-  const history = useHistory();
-
-  const link = "/login";
-  const goToLogin = (): void => {
-    history.push(`${link}`);
-  };
 
   return (
     <AppBar position="static">
@@ -51,7 +43,7 @@ const Header: React.FC<Props> = ({ onMDEClick = null }) => {
         <Typography variant="h6" className={classes.title}>
           Make a Walt Disney World Reservation
         </Typography>
-        <Button color="inherit" onClick={onMDEClick ? onMDEClick : goToLogin}>
+        <Button color="inherit" onClick={onMDEClick}>
           My Disney Experience
         </Button>
       </Toolbar>
