@@ -3,6 +3,7 @@ export const UnauthenticatedAppRoutes = {
   Start: "/start",
   SignUp: "/signup",
   PasswordReset: "/passwordReset",
+  WaitTimes: "/waitTimes",
 };
 
 export const AuthenticatedAppRoutes = {
@@ -10,6 +11,7 @@ export const AuthenticatedAppRoutes = {
   Login: "/login",
   SignUp: "/signup",
   PasswordReset: "/passwordReset",
+  WaitTimes: "/waitTimes",
   Home: "/home",
 };
 

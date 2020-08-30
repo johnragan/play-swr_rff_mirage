@@ -16,3 +16,11 @@ function App() {
 }
 
 export default App;
+
+// Fast passes - those available now (today); those not available
+// Wait times for rides
+//    Could get the current wait times
+//    Could update the wait times
+//    Maybe list all per park - to make it a more comprehensive form
+//    Let's go with this one
+// Dining - those available now (today); those not available

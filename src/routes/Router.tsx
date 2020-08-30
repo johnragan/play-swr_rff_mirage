@@ -8,6 +8,7 @@ import { config } from "../config";
 import { UnauthenticatedAppRoutes } from "./AppRoutes";
 import LoginScreen from "../components/screens/LoginScreen/LoginScreen";
 import SignUpScreen from "../components/screens/SignUpScreen/SignUpScreen";
+import RideWaitTimesScreen from "../components/screens/RideWaitTimesScreen/RideWaitTimesScreen";
 
 import { Route } from "./Route";
 
@@ -37,6 +38,12 @@ export const Router: FC = () => {
           path={UnauthenticatedAppRoutes.Start}
           children={<StartScreen />}
           title={`${config.appTitle} - Start`}
+        />
+        <Route
+          exact
+          path={UnauthenticatedAppRoutes.WaitTimes}
+          children={<RideWaitTimesScreen />}
+          title={`${config.appTitle} - Ride Wait Times`}
         />
         <Redirect to={UnauthenticatedAppRoutes.Start} />
       </Switch>
