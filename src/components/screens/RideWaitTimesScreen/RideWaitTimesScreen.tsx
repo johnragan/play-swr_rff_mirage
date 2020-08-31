@@ -8,6 +8,8 @@ import {
   NativeSelect,
   FormHelperText,
   makeStyles,
+  List,
+  ListItem,
 } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -71,18 +73,18 @@ const RideWaitTimesScreen: React.FC<Props> = ({ defaultPark }) => {
   function RenderCards(rides: RideWaitTimes) {
     return (
       <React.Fragment>
-        <ul>
+        <List>
           {rides.map(
             (
               ride: { ride: string; land: string; waitMinutes: string },
               index: number
             ) => (
-              <li key={index}>
+              <ListItem key={index}>
                 <WaitTimesCard {...ride} />
-              </li>
+              </ListItem>
             )
           )}
-        </ul>
+        </List>
       </React.Fragment>
     );
   }
