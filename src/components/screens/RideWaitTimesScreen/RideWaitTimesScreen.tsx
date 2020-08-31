@@ -43,12 +43,10 @@ const RideWaitTimesScreen: React.FC<Props> = () => {
   // console.log(epcotRides);
   // console.log(typeof epcotRides);
 
-  // @ts-ignore
   function RenderCards(rides: RideWaitTimes) {
     // console.log(rides);
     // console.log(typeof rides);
 
-    // @ts-ignore
     return rides.map(function (ride) {
       return `<p>This wait is ${ride.waitMinutes}</p>`;
     });
@@ -80,7 +78,7 @@ const RideWaitTimesScreen: React.FC<Props> = () => {
       <WaitTimesCard {...epcotRides[0]} />
 
       {/* <RenderCards3 {...epcotRides} /> */}
-      {/* @ts-ignore */}
+
       {RenderCards(epcotRides)}
     </React.Fragment>
   );
