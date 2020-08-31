@@ -29,6 +29,12 @@ type Props = {
   waitMinutes: string;
 };
 
+export type RideWaitTime = {
+  ride: string;
+  land: string;
+  waitMinutes: string;
+};
+
 const WaitTimesCard: React.FC<Props> = ({ ride, land, waitMinutes }) => {
   const classes = useStyles();
 

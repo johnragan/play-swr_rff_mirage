@@ -1,6 +1,6 @@
 import React from "react";
 
-import WaitTimesCard from "./WaitTimesCard";
+import WaitTimesCard from "./WaitTimeCard";
 
 export default {
   component: WaitTimesCard,
