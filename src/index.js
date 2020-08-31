@@ -1,14 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import * as serviceWorker from "./serviceWorker";
+import makeServer from "./server";
+
+// if (
+//   process.env.NODE_ENV === "development" &&
+//   typeof makeServer === "function"
+// ) {
+//   makeServer();
+// } else if (process.env.NODE_ENV === "production") {
+//   makeServer();
+// }
+makeServer();
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change

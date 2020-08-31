@@ -6,7 +6,7 @@ import { SelectRouter } from "./routes/SelectRouter";
 // TODO: Add support for storybook tests
 // TODO: Integrate the new Style guide in
 // TODO: Add constants for route paths
-
+// TODO: In tsconfig, set this back to true: noUnusedLocals
 function App() {
   return (
     <div className="App">
