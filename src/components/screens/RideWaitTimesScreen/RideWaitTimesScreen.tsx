@@ -12,18 +12,6 @@ import WaitTimesCard, { RideWaitTime } from "./WaitTimeCard/WaitTimeCard";
 
 type RideWaitTimes = RideWaitTime[];
 
-// const RenderCards = (rides: RideWaitTimes) => {
-//   return (
-//     <React.Fragment>
-//       {rides.map(
-//         (ride: { ride: string; land: string; waitMinutes: string }) => (
-//           <WaitTimesCard {...ride} />
-//         )
-//       )}
-//     </React.Fragment>
-//   );
-// };
-
 type Props = {};
 
 const RideWaitTimesScreen: React.FC<Props> = () => {
@@ -40,32 +28,24 @@ const RideWaitTimesScreen: React.FC<Props> = () => {
     },
   ];
 
-  // console.log(epcotRides);
-  // console.log(typeof epcotRides);
-
   function RenderCards(rides: RideWaitTimes) {
-    // console.log(rides);
-    // console.log(typeof rides);
-
-    return rides.map(function (ride) {
-      return `<p>This wait is ${ride.waitMinutes}</p>`;
-    });
-
-    // return <div></div>;
+    return (
+      <React.Fragment>
+        <ul>
+          {rides.map(
+            (
+              ride: { ride: string; land: string; waitMinutes: string },
+              index: number
+            ) => (
+              <li key={index}>
+                <WaitTimesCard {...ride} />
+              </li>
+            )
+          )}
+        </ul>
+      </React.Fragment>
+    );
   }
-
-  // // @ts-ignore
-  // function RenderCards2(rides: RideWaitTimes) {
-  //   // console.log(rides);
-  //   // console.log(typeof rides);
-
-  //   // @ts-ignore
-  //   return rides["rides"].map(function (ride) {
-  //     return `<p>This wait is ${ride.waitMinutes}</p>`;
-  //   });
-
-  //   // return <div></div>;
-  // }
 
   return (
     <React.Fragment>
@@ -75,9 +55,6 @@ const RideWaitTimesScreen: React.FC<Props> = () => {
       <Typography component="h1" variant="h5">
         The following are the wait times for Epcot:
       </Typography>
-      <WaitTimesCard {...epcotRides[0]} />
-
-      {/* <RenderCards3 {...epcotRides} /> */}
 
       {RenderCards(epcotRides)}
     </React.Fragment>
