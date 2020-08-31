@@ -1,8 +1,24 @@
 import React, { useEffect, useState } from "react";
-//import { useParams, useHistory, useLocation } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import WaitTimesCard, { RideWaitTime } from "./WaitTimeCard/WaitTimeCard";
-import { Parks, getParkById } from "../../../constants/parks";
+import { Parks, getParkById, MK, EP, HS, AK } from "../../../constants/parks";
+import {
+  FormControl,
+  InputLabel,
+  NativeSelect,
+  FormHelperText,
+  makeStyles,
+} from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+}));
 
 type RideWaitTimes = RideWaitTime[];
 
@@ -18,17 +34,12 @@ const RideWaitTimesScreen: React.FC<Props> = ({ defaultPark }) => {
   // let { parkId } = useParams();
   // let [parkId, setParkId] = useState("1");
 
-  let [parkId] = useState(defaultPark);
+  const classes = useStyles();
+
+  let [parkId, setParkId] = useState(defaultPark);
 
   let [rides, setRides] = useState([]);
   // let [parks, setParks] = useState();
-  // let [error, setError] = useState();
-  // let [isAddingRide, setIsAddingRide] = useState();
-  // let [isSavingRide, setIsSavingRide] = useState();
-  // let [isAddingPark, setIsAddingPark] = useState();
-  // let [isSavingPark, setIsSavingPark] = useState();
-  // let [newRideText, setNewRideText] = useState("");
-  // let [newParkName, setNewParkName] = useState("");
 
   // @ts-ignore
   //let activePark = parkId && parks?.find((park) => park.id === parkId);
@@ -57,106 +68,6 @@ const RideWaitTimesScreen: React.FC<Props> = ({ defaultPark }) => {
     };
   }, [parkId]);
 
-  // // @ts-ignore
-  // function createRide(e) {
-  //   e.preventDefault();
-
-  //   if (!newRideText) {
-  //     return;
-  //   }
-
-  //   // @ts-ignore
-  //   setIsSavingRide(true);
-
-  //   fetch("/api/rides", {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //       text: newRideText,
-  //       ...(parkId && { parkId }),
-  //     }),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((json) => {
-  //       setNewRideText("");
-  //       // @ts-ignore
-  //       setRides((rides) => [...rides, json.ride]);
-  //       // @ts-ignore
-  //       setIsAddingRide(false);
-  //     })
-  //     .catch((e) => {
-  //       // @ts-ignore
-  //       setError("Your Ride wasn't saved. Try again.");
-  //       console.error(e);
-  //     })
-  //     .finally(() => {
-  //       // @ts-ignore
-  //       setIsSavingRide(false);
-  //     });
-  // }
-
-  // // @ts-ignore
-  // function createPark(e) {
-  //   e.preventDefault();
-
-  //   if (!newParkName) {
-  //     return;
-  //   }
-
-  //   // @ts-ignore
-  //   setIsSavingPark(true);
-
-  //   fetch("/api/parks", {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //       name: newParkName,
-  //     }),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((json) => {
-  //       setNewParkName("");
-  //       // @ts-ignore
-  //       setParks((parks) => [...parks, json.park]);
-  //       // @ts-ignore
-  //       setIsAddingPark(false);
-  //       history.push(`/${json.park.id}${location.search}`);
-  //     })
-  //     .catch(() => {
-  //       // @ts-ignore
-  //       setError("Your Park wasn't saved. Try again.");
-  //     })
-  //     .finally(() => {
-  //       // @ts-ignore
-  //       setIsSavingPark(false);
-  //     });
-  // }
-
-  // // @ts-ignore
-  // function deleteRide(id) {
-  //   fetch(`/api/rides/${id}`, { method: "DELETE" });
-  //   // @ts-ignore
-  //   setRides((rides) => rides.filter((ride) => ride.id !== id));
-  // }
-
-  // function deletePark() {
-  //   fetch(`/api/parks/${parkId}`, { method: "DELETE" });
-  //   // @ts-ignore
-  //   setParks((parks) => parks?.filter((park) => park.id !== parkId));
-  //   history.push(`/${location.search}`);
-  // }
-
-  // const epcotRides: RideWaitTimes = [
-  //   {
-  //     ride: "Living with the Land",
-  //     land: "Epcot",
-  //     waitMinutes: "15",
-  //   },
-  //   {
-  //     ride: "Test Track",
-  //     land: "Epcot",
-  //     waitMinutes: "35",
-  //   },
-  // ];
-
   function RenderCards(rides: RideWaitTimes) {
     return (
       <React.Fragment>
@@ -176,8 +87,30 @@ const RideWaitTimesScreen: React.FC<Props> = ({ defaultPark }) => {
     );
   }
 
+  const handleParkChange = (event: any) => {
+    setParkId(event.target.value);
+  };
+
   return (
     <React.Fragment>
+      <FormControl className={classes.formControl}>
+        <InputLabel htmlFor="uncontrolled-native">Park</InputLabel>
+        <NativeSelect
+          defaultValue={defaultPark}
+          inputProps={{
+            name: "name",
+            id: "uncontrolled-native",
+          }}
+          onChange={handleParkChange}
+        >
+          <option value={Parks.MK}>{MK}</option>
+          <option value={Parks.EP}>{EP}</option>
+          <option value={Parks.HS}>{HS}</option>
+          <option value={Parks.AK}>{AK}</option>
+        </NativeSelect>
+        <FormHelperText>Pick your park</FormHelperText>
+      </FormControl>
+
       <Typography component="h1" variant="h4">
         Ride Wait Times
       </Typography>
