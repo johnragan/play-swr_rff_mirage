@@ -1,6 +1,5 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import epcot from "../../..//photos/Epcot_mono_5x2.png";
 import { Typography } from "@material-ui/core";
 
 import Header from "../../Header/Header";
@@ -19,7 +18,11 @@ export default function StartScreen() {
   return (
     <React.Fragment>
       <Header onMDEClick={goToSignInPage} />
-      <img src={epcot} className="App-epcot" alt="epcot" />
+      <img
+        src="/static/images/cards/Epcot_mono_5x2.png"
+        className="App-epcot"
+        alt="epcot"
+      />
       <Typography variant="h6">Your Ultimate WDW Planning Resource</Typography>
     </React.Fragment>
   );

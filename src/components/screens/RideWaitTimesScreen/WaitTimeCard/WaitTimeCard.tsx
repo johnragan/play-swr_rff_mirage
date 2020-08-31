@@ -5,6 +5,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { CardMedia } from "@material-ui/core";
 
 const useStyles = makeStyles({
   root: {
@@ -20,6 +21,9 @@ const useStyles = makeStyles({
   },
   pos: {
     marginBottom: 12,
+  },
+  media: {
+    height: 140,
   },
 });
 
@@ -39,7 +43,12 @@ const WaitTimesCard: React.FC<Props> = ({ ride, land, waitMinutes }) => {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} variant="outlined">
+      <CardMedia
+        className={classes.media}
+        image="/static/images/cards/cars.png"
+        title="Cars"
+      />
       <CardContent>
         <Typography
           className={classes.title}
