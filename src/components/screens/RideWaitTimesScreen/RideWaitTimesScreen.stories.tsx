@@ -11,4 +11,10 @@ export default {
   excludeStories: /.*Data$/,
 };
 
-export const Epcot = () => <RideWaitTimesScreen />;
+export const MagicKingdom = () => <RideWaitTimesScreen defaultPark={1} />;
+
+export const Epcot = () => <RideWaitTimesScreen defaultPark={2} />;
+
+export const HollywoodStudios = () => <RideWaitTimesScreen defaultPark={3} />;
+
+export const AnimalKingdom = () => <RideWaitTimesScreen defaultPark={4} />;

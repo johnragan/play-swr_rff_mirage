@@ -42,7 +42,7 @@ export const Router: FC = () => {
         <Route
           exact
           path={UnauthenticatedAppRoutes.WaitTimes}
-          children={<RideWaitTimesScreen />}
+          children={<RideWaitTimesScreen defaultPark={2} />}
           title={`${config.appTitle} - Ride Wait Times`}
         />
         <Redirect to={UnauthenticatedAppRoutes.Start} />

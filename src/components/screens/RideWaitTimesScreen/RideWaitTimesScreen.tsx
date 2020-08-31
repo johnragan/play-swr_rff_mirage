@@ -2,26 +2,23 @@ import React, { useEffect, useState } from "react";
 //import { useParams, useHistory, useLocation } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import WaitTimesCard, { RideWaitTime } from "./WaitTimeCard/WaitTimeCard";
-
-// enum Parks {
-//   MK = 1,
-//   EP = 2,
-//   HS = 3,
-//   AK = 4,
-// }
+import { Parks, getParkById } from "../../../constants/parks";
 
 type RideWaitTimes = RideWaitTime[];
 
-type Props = {};
+type Props = {
+  defaultPark: Parks;
+};
 
-const RideWaitTimesScreen: React.FC<Props> = () => {
+const RideWaitTimesScreen: React.FC<Props> = ({ defaultPark }) => {
   // let history = useHistory();
   // // @ts-ignore
   // let location = useLocation(useHistory);
   // // @ts-ignore
   // let { parkId } = useParams();
   // let [parkId, setParkId] = useState("1");
-  let [parkId] = useState("1");
+
+  let [parkId] = useState(defaultPark);
 
   let [rides, setRides] = useState([]);
   // let [parks, setParks] = useState();
@@ -185,7 +182,7 @@ const RideWaitTimesScreen: React.FC<Props> = () => {
         Ride Wait Times
       </Typography>
       <Typography component="h1" variant="h5">
-        The following are the wait times for Epcot:
+        The following are the wait times for {getParkById(parkId)}:
       </Typography>
       {RenderCards(rides)}
     </React.Fragment>

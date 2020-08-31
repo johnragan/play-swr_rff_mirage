@@ -1,3 +1,7 @@
+import { MK, EP, HS, AK } from "./constants/parks";
+
+// TODO: Create Land via MirageJS serialization
+
 import {
   createServer,
   Model,
@@ -42,20 +46,66 @@ export default function (environment = "development") {
     },
 
     seeds(server) {
-      let epcotPark = server.create("park", { name: "Epcot" });
+      const magicKingdomPark = server.create("park", { name: MK });
+      server.create("ride", {
+        park: magicKingdomPark,
+        ride: "Splash Mountain",
+        land: MK,
+        waitMinutes: "45",
+      });
+      server.create("ride", {
+        park: magicKingdomPark,
+        ride: "Space Mountain",
+        land: MK,
+        waitMinutes: "75",
+      });
+
+      const epcotPark = server.create("park", { name: EP });
       server.create("ride", {
         park: epcotPark,
         ride: "Maelstrom",
-        land: "Epcot",
+        land: EP,
         waitMinutes: "15",
       });
       server.create("ride", {
         park: epcotPark,
         ride: "Journey Into Imagination",
-        land: "Epcot",
+        land: EP,
         waitMinutes: "35",
       });
-      // let magicKingdomPark = server.create("park", { name: "Magic Kingdom" });
+
+      const hollywoodStudiosPark = server.create("park", {
+        name: HS,
+      });
+      server.create("ride", {
+        park: hollywoodStudiosPark,
+        ride: "Rise of the Resistance",
+        land: HS,
+        waitMinutes: "190",
+      });
+      server.create("ride", {
+        park: hollywoodStudiosPark,
+        ride: "Tower of Terror",
+        land: HS,
+        waitMinutes: "13",
+      });
+
+      const animalKingdomPark = server.create("park", {
+        name: AK,
+      });
+      server.create("ride", {
+        park: animalKingdomPark,
+        ride: "Flight of Passage",
+        land: AK,
+        waitMinutes: "210",
+      });
+      server.create("ride", {
+        park: animalKingdomPark,
+        ride: "Expedition Everest",
+        land: AK,
+        waitMinutes: "13",
+      });
+
       // ====================================
       //server.createPark("ride", 2);
       // server.create("park", {
