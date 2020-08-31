@@ -5,15 +5,18 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import makeServer from "./server";
 
-// if (
-//   process.env.NODE_ENV === "development" &&
-//   typeof makeServer === "function"
-// ) {
-//   makeServer();
-// } else if (process.env.NODE_ENV === "production") {
-//   makeServer();
-// }
-makeServer();
+export const createMirageServer = () => {
+  if (
+    process.env.NODE_ENV === "development" &&
+    typeof makeServer === "function"
+  ) {
+    makeServer();
+  } else if (process.env.NODE_ENV === "production") {
+    makeServer();
+  }
+};
+
+createMirageServer();
 
 ReactDOM.render(
   <React.StrictMode>

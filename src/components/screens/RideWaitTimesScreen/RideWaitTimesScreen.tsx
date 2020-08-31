@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useHistory, useLocation } from "react-router-dom";
+//import { useParams, useHistory, useLocation } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import WaitTimesCard, { RideWaitTime } from "./WaitTimeCard/WaitTimeCard";
 
@@ -20,20 +20,21 @@ const RideWaitTimesScreen: React.FC<Props> = () => {
   // let location = useLocation(useHistory);
   // // @ts-ignore
   // let { parkId } = useParams();
-  let [parkId, setParkId] = useState("1");
+  // let [parkId, setParkId] = useState("1");
+  let [parkId] = useState("1");
 
   let [rides, setRides] = useState([]);
-  let [parks, setParks] = useState();
-  let [error, setError] = useState();
-  let [isAddingRide, setIsAddingRide] = useState();
-  let [isSavingRide, setIsSavingRide] = useState();
-  let [isAddingPark, setIsAddingPark] = useState();
-  let [isSavingPark, setIsSavingPark] = useState();
-  let [newRideText, setNewRideText] = useState("");
-  let [newParkName, setNewParkName] = useState("");
+  // let [parks, setParks] = useState();
+  // let [error, setError] = useState();
+  // let [isAddingRide, setIsAddingRide] = useState();
+  // let [isSavingRide, setIsSavingRide] = useState();
+  // let [isAddingPark, setIsAddingPark] = useState();
+  // let [isSavingPark, setIsSavingPark] = useState();
+  // let [newRideText, setNewRideText] = useState("");
+  // let [newParkName, setNewParkName] = useState("");
 
   // @ts-ignore
-  let activePark = parkId && parks?.find((park) => park.id === parkId);
+  //let activePark = parkId && parks?.find((park) => park.id === parkId);
 
   useEffect(() => {
     let isCurrent = true;
@@ -186,8 +187,6 @@ const RideWaitTimesScreen: React.FC<Props> = () => {
       <Typography component="h1" variant="h5">
         The following are the wait times for Epcot:
       </Typography>
-      {/* {RenderCards(epcotRides)} */}
-      {/* @ts-ignore */}
       {RenderCards(rides)}
     </React.Fragment>
   );
