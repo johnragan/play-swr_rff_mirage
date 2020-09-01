@@ -34,9 +34,11 @@ export default function WaitTimeForm() {
   let [newParkText, setNewParkText] = useState("");
   let [isAddingRide, setIsAddingRide] = useState();
   let [isSavingRide, setIsSavingRide] = useState();
-  let [rides, setRides] = useState(null);
+  //let [rides, setRides] = useState(null);
   let [newWaitTimeText, setNewWaitTimeText] = useState("");
   let [parkId] = useState(1);
+  console.log(isAddingRide);
+  console.log(isSavingRide);
 
   const classes = useStyles();
 
