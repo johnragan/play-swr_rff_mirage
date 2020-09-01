@@ -10,7 +10,9 @@ import {
   makeStyles,
   List,
   ListItem,
+  Grid,
 } from "@material-ui/core";
+import WaitTimeForm from "../../forms/WaitTimeForm";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -95,31 +97,38 @@ const RideWaitTimesScreen: React.FC<Props> = ({ defaultPark }) => {
 
   return (
     <React.Fragment>
-      <FormControl className={classes.formControl}>
-        <InputLabel htmlFor="uncontrolled-native">Park</InputLabel>
-        <NativeSelect
-          defaultValue={defaultPark}
-          inputProps={{
-            name: "name",
-            id: "uncontrolled-native",
-          }}
-          onChange={handleParkChange}
-        >
-          <option value={Parks.MK}>{MK}</option>
-          <option value={Parks.EP}>{EP}</option>
-          <option value={Parks.HS}>{HS}</option>
-          <option value={Parks.AK}>{AK}</option>
-        </NativeSelect>
-        <FormHelperText>Pick your park</FormHelperText>
-      </FormControl>
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={6}>
+          <FormControl className={classes.formControl}>
+            <InputLabel htmlFor="uncontrolled-native">Park</InputLabel>
+            <NativeSelect
+              defaultValue={defaultPark}
+              inputProps={{
+                name: "name",
+                id: "uncontrolled-native",
+              }}
+              onChange={handleParkChange}
+            >
+              <option value={Parks.MK}>{MK}</option>
+              <option value={Parks.EP}>{EP}</option>
+              <option value={Parks.HS}>{HS}</option>
+              <option value={Parks.AK}>{AK}</option>
+            </NativeSelect>
+            <FormHelperText>Pick your park</FormHelperText>
+          </FormControl>
 
-      <Typography component="h1" variant="h4">
-        Ride Wait Times
-      </Typography>
-      <Typography component="h1" variant="h5">
-        The following are the wait times for {getParkById(parkId)}:
-      </Typography>
-      {RenderCards(rides)}
+          <Typography component="h1" variant="h4">
+            Ride Wait Times
+          </Typography>
+          <Typography component="h1" variant="h5">
+            The following are the wait times for {getParkById(parkId)}:
+          </Typography>
+          {RenderCards(rides)}
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <WaitTimeForm />
+        </Grid>
+      </Grid>
     </React.Fragment>
   );
 };

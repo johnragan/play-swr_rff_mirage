@@ -4,6 +4,6 @@ import WaitTimeForm from "./WaitTimeForm";
 
 test("renders Add Ride", () => {
   const { getByText } = render(<WaitTimeForm />);
-  const element = getByText(/Add Ride/);
+  const element = getByText(/Add Rides/);
   expect(element).toBeInTheDocument();
 });

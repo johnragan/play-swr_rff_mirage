@@ -40,7 +40,7 @@ export default function WaitTimeForm() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Add Ride
+          Add Rides
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
