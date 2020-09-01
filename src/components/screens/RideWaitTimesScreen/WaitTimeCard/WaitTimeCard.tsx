@@ -6,6 +6,15 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { CardMedia } from "@material-ui/core";
+import useSWR, { mutate, trigger } from "swr";
+import {
+  MK_RIDES_URL,
+  EP_RIDES_URL,
+  HS_RIDES_URL,
+  AK_RIDES_URL,
+  PARK_RIDE_URLS,
+  getParkIdFromPark,
+} from "../../../../constants/parks";
 
 const useStyles = makeStyles({
   root: {
@@ -32,16 +41,24 @@ type Props = {
   ride: string;
   land: string;
   waitMinutes: string;
+  id: string;
 };
 
 export type RideWaitTime = {
   ride: string;
   land: string;
   waitMinutes: string;
+  id: string;
 };
 
-const WaitTimesCard: React.FC<Props> = ({ ride, land, waitMinutes }) => {
+const WaitTimesCard: React.FC<Props> = ({ ride, land, waitMinutes, id }) => {
   const classes = useStyles();
+
+  const { data: ridesMK } = useSWR(MK_RIDES_URL);
+  const { data: ridesEP } = useSWR(EP_RIDES_URL);
+  const { data: ridesHS } = useSWR(HS_RIDES_URL);
+  const { data: ridesAK } = useSWR(AK_RIDES_URL);
+  const parkRides = [ridesMK, ridesMK, ridesEP, ridesHS, ridesAK];
 
   return (
     <Card className={classes.root} variant="outlined">
@@ -69,7 +86,25 @@ const WaitTimesCard: React.FC<Props> = ({ ride, land, waitMinutes }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Delete</Button>
+        <Button
+          size="small"
+          onClick={() => {
+            console.log(`delete id: ${id}`);
+            const parkId = getParkIdFromPark(land);
+            //@ts-ignore
+            mutate(
+              //@ts-ignore
+              PARK_RIDE_URLS[parkId],
+              //@ts-ignore
+              parkRides[parkId].filter((r) => r.id !== id),
+              false
+            );
+            fetch(`/api/rides/${id}`, { method: "DELETE" });
+            trigger(PARK_RIDE_URLS[parkId]);
+          }}
+        >
+          Delete
+        </Button>
       </CardActions>
     </Card>
   );

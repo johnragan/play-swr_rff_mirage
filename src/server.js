@@ -50,12 +50,14 @@ export default function (environment = "development") {
         ride: "Splash Mountain",
         land: MK,
         waitMinutes: "45",
+        id: "1",
       });
       server.create("ride", {
         park: magicKingdomPark,
         ride: "Space Mountain",
         land: MK,
         waitMinutes: "75",
+        id: "2",
       });
 
       const epcotPark = server.create("park", { name: EP });
@@ -64,12 +66,14 @@ export default function (environment = "development") {
         ride: "Maelstrom",
         land: EP,
         waitMinutes: "15",
+        id: "3",
       });
       server.create("ride", {
         park: epcotPark,
         ride: "Journey Into Imagination",
         land: EP,
         waitMinutes: "35",
+        id: "4",
       });
 
       const hollywoodStudiosPark = server.create("park", {
@@ -80,12 +84,14 @@ export default function (environment = "development") {
         ride: "Rise of the Resistance",
         land: HS,
         waitMinutes: "190",
+        id: "5",
       });
       server.create("ride", {
         park: hollywoodStudiosPark,
         ride: "Tower of Terror",
         land: HS,
         waitMinutes: "13",
+        id: "6",
       });
 
       const animalKingdomPark = server.create("park", {
@@ -96,12 +102,14 @@ export default function (environment = "development") {
         ride: "Flight of Passage",
         land: AK,
         waitMinutes: "210",
+        id: "7",
       });
       server.create("ride", {
         park: animalKingdomPark,
         ride: "Expedition Everest",
         land: AK,
         waitMinutes: "13",
+        id: "8",
       });
 
       // ====================================

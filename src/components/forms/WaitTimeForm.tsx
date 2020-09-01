@@ -20,6 +20,7 @@ import {
   EP_RIDES_URL,
   HS_RIDES_URL,
   AK_RIDES_URL,
+  nextRideId,
 } from "../../constants/parks";
 import { NativeSelect } from "@material-ui/core";
 // trigger is used after the update is made
@@ -81,6 +82,7 @@ export default function WaitTimeForm() {
       ride: newRideText,
       land: newParkText,
       waitMinutes: newWaitTimeText,
+      id: nextRideId(),
       ...(parkId && { parkId }),
     };
     mutate(PARK_RIDE_URLS[parkId], [...parkRides[parkId], values], false);

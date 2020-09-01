@@ -71,7 +71,12 @@ const RideWaitTimesScreen: React.FC<Props> = ({ defaultPark }) => {
         <List>
           {rides.map(
             (
-              ride: { ride: string; land: string; waitMinutes: string },
+              ride: {
+                ride: string;
+                land: string;
+                waitMinutes: string;
+                id: string;
+              },
               index: number
             ) => (
               <ListItem key={index}>

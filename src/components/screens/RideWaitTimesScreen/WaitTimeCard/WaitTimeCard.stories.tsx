@@ -10,5 +10,10 @@ export default {
 };
 
 export const Epcot = () => (
-  <WaitTimesCard ride="Living with the Land" land="Epcot" waitMinutes="15" />
+  <WaitTimesCard
+    ride="Living with the Land"
+    land="Epcot"
+    waitMinutes="15"
+    id="1"
+  />
 );

@@ -13,9 +13,20 @@ export const AK: string = "Animal Kingdom";
 const ZERO_OFFSET = "Zero Offset";
 
 const parksById = [ZERO_OFFSET, MK, EP, HS, AK];
+const parkIdsByPark = {
+  "Magic Kingdom": 1,
+  Epcot: 2,
+  "Hollywood Studios": 3,
+  "Animal Kingdom": 4,
+};
 
 export function getParkById(id: Parks) {
   return parksById[id];
+}
+
+export function getParkIdFromPark(name: string) {
+  // @ts-ignore
+  return parkIdsByPark[name];
 }
 
 // @ts-ignore
@@ -34,3 +45,10 @@ export const PARK_RIDE_URLS = [
   HS_RIDES_URL,
   AK_RIDES_URL,
 ];
+
+let nextId = 8;
+// @ts-ignore
+export function nextRideId() {
+  nextId = nextId + 1;
+  return nextId;
+}
