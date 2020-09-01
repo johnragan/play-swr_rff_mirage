@@ -46,7 +46,6 @@ export default function WaitTimeForm() {
 
   // @ts-ignore
   function createRide(e) {
-    console.log("Inside createRide");
     e.preventDefault();
 
     if (!newRideText) {

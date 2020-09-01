@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Typography from "@material-ui/core/Typography";
+import useSWR from "swr";
 import WaitTimesCard, { RideWaitTime } from "./WaitTimeCard/WaitTimeCard";
 import { Parks, getParkById, MK, EP, HS, AK } from "../../../constants/parks";
 import {
@@ -31,48 +32,72 @@ type Props = {
 };
 
 const RideWaitTimesScreen: React.FC<Props> = ({ defaultPark }) => {
-  // let history = useHistory();
-  // // @ts-ignore
-  // let location = useLocation(useHistory);
-  // // @ts-ignore
-  // let { parkId } = useParams();
-  // let [parkId, setParkId] = useState("1");
-
   const classes = useStyles();
-
   let [parkId, setParkId] = useState(defaultPark);
-
-  let [rides, setRides] = useState([]);
-  // let [parks, setParks] = useState();
-
-  // @ts-ignore
-  //let activePark = parkId && parks?.find((park) => park.id === parkId);
-
-  useEffect(() => {
-    let isCurrent = true;
-    setRides([]);
-    const url = parkId ? `/api/parks/${parkId}/rides` : `/api/rides`;
-
+  //let [rides, setRides] = useState([]);
+  const fetcher = (url: string) =>
     fetch(url)
       .then((res) => res.json())
-      .then((json) => {
-        if (isCurrent) {
-          setRides(json.rides);
-        }
-      })
-      .catch(() => {
-        if (isCurrent) {
-          // @ts-ignore
-          setError("We couldn't load your rides. Try again soon.");
-        }
-      });
+      .then((json) => json.rides);
 
-    return () => {
-      isCurrent = false;
-    };
-  }, [parkId]);
+  // @ts-ignore
+  const { data: ridesMK } = useSWR(
+    `http://localhost:3000/api/parks/${Parks.MK}/rides`,
+    fetcher
+  );
 
+  // @ts-ignore
+  const { data: ridesEP } = useSWR(
+    `http://localhost:3000/api/parks/${Parks.EP}/rides`,
+    fetcher
+  );
+
+  // @ts-ignore
+  const { data: ridesHS } = useSWR(
+    `http://localhost:3000/api/parks/${Parks.HS}/rides`,
+    fetcher
+  );
+
+  // @ts-ignore
+  const { data: ridesAK } = useSWR(
+    `http://localhost:3000/api/parks/${Parks.AK}/rides`,
+    fetcher
+  );
+
+  const parkRides = [ridesMK, ridesMK, ridesEP, ridesHS, ridesAK];
+
+  // useEffect(() => {
+  //   let isCurrent = true;
+  //   setRides([]);
+  //   const url = parkId ? `/api/parks/${parkId}/rides` : `/api/rides`;
+
+  //   fetch(url)
+  //     .then((res) => res.json())
+  //     .then((json) => {
+  //       if (isCurrent) {
+  //         setRides(json.rides);
+  //       }
+  //     })
+  //     .catch(() => {
+  //       if (isCurrent) {
+  //         // @ts-ignore
+  //         setError("We couldn't load your rides. Try again soon.");
+  //       }
+  //     });
+
+  //   console.log(`Data is ${data}`);
+
+  //   return () => {
+  //     isCurrent = false;
+  //   };
+  // }, [parkId, data]);
+
+  // @ts-ignore
   function RenderCards(rides: RideWaitTimes) {
+    console.log(`rides is ${rides}`);
+    if (!rides) {
+      return <div>No Data</div>;
+    }
     return (
       <React.Fragment>
         <List>
@@ -116,14 +141,14 @@ const RideWaitTimesScreen: React.FC<Props> = ({ defaultPark }) => {
             </NativeSelect>
             <FormHelperText>Pick your park</FormHelperText>
           </FormControl>
-
           <Typography component="h1" variant="h4">
             Ride Wait Times
           </Typography>
           <Typography component="h1" variant="h5">
             The following are the wait times for {getParkById(parkId)}:
           </Typography>
-          {RenderCards(rides)}
+          {/* @ts-ignore */}
+          {RenderCards(parkRides[parkId])}
         </Grid>
         <Grid item xs={12} sm={6}>
           <WaitTimeForm />

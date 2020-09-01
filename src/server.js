@@ -1,7 +1,5 @@
 import { MK, EP, HS, AK } from "./constants/parks";
 
-// TODO: Create Land via MirageJS serialization
-
 import {
   createServer,
   Model,
