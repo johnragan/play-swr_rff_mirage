@@ -16,9 +16,16 @@ import {
   HS,
   AK,
   PARK_RIDE_URLS,
+  MK_RIDES_URL,
+  EP_RIDES_URL,
+  HS_RIDES_URL,
+  AK_RIDES_URL,
 } from "../../constants/parks";
 import { NativeSelect } from "@material-ui/core";
-import { trigger } from "swr";
+// trigger is used after the update is made
+// mutate is used before the update is made, like an optimistic update first,
+// followed by a refresh
+import useSWR, { trigger, mutate } from "swr";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -53,6 +60,12 @@ export default function WaitTimeForm() {
 
   const classes = useStyles();
 
+  const { data: ridesMK } = useSWR(MK_RIDES_URL);
+  const { data: ridesEP } = useSWR(EP_RIDES_URL);
+  const { data: ridesHS } = useSWR(HS_RIDES_URL);
+  const { data: ridesAK } = useSWR(AK_RIDES_URL);
+  const parkRides = [ridesMK, ridesMK, ridesEP, ridesHS, ridesAK];
+
   // @ts-ignore
   function createRide(e) {
     e.preventDefault();
@@ -64,14 +77,16 @@ export default function WaitTimeForm() {
     // @ts-ignore
     setIsSavingRide(true);
 
+    const values = {
+      ride: newRideText,
+      land: newParkText,
+      waitMinutes: newWaitTimeText,
+      ...(parkId && { parkId }),
+    };
+    mutate(PARK_RIDE_URLS[parkId], [...parkRides[parkId], values], false);
     fetch("/api/rides", {
       method: "POST",
-      body: JSON.stringify({
-        ride: newRideText,
-        land: newParkText,
-        waitMinutes: newWaitTimeText,
-        ...(parkId && { parkId }),
-      }),
+      body: JSON.stringify(values),
     })
       .then((res) => res.json())
       .then(() => {

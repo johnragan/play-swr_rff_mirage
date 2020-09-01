@@ -69,7 +69,7 @@ const WaitTimesCard: React.FC<Props> = ({ ride, land, waitMinutes }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Add to Plan</Button>
+        <Button size="small">Delete</Button>
       </CardActions>
     </Card>
   );
