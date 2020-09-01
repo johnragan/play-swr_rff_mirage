@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -30,7 +30,57 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function WaitTimeForm() {
+  let [newRideText, setNewRideText] = useState("");
+  let [newParkText, setNewParkText] = useState("");
+  let [isAddingRide, setIsAddingRide] = useState();
+  let [isSavingRide, setIsSavingRide] = useState();
+  let [rides, setRides] = useState(null);
+  let [newWaitTimeText, setNewWaitTimeText] = useState("");
+  let [parkId] = useState(1);
+
   const classes = useStyles();
+
+  // @ts-ignore
+  function createRide(e) {
+    console.log("Inside createRide");
+    e.preventDefault();
+
+    if (!newRideText) {
+      return;
+    }
+
+    // @ts-ignore
+    setIsSavingRide(true);
+
+    fetch("/api/rides", {
+      method: "POST",
+      body: JSON.stringify({
+        ride: newRideText,
+        land: newParkText,
+        waitMinutes: newWaitTimeText,
+        ...(parkId && { parkId }),
+      }),
+    })
+      .then((res) => res.json())
+      .then(() => {
+        setNewRideText("");
+        setNewParkText("");
+        setNewWaitTimeText("");
+        // @ts-ignore
+        //setRides((rides) => [...rides, json.ride]);
+        // @ts-ignore
+        setIsAddingRide(false);
+      })
+      .catch((e) => {
+        // @ts-ignore
+        setError("Your Ride wasn't saved. Try again.");
+        console.error(e);
+      })
+      .finally(() => {
+        // @ts-ignore
+        setIsSavingRide(false);
+      });
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -42,7 +92,7 @@ export default function WaitTimeForm() {
         <Typography component="h1" variant="h5">
           Add Rides
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={createRide}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -54,6 +104,8 @@ export default function WaitTimeForm() {
                 id="rideName"
                 label="Ride Name"
                 autoFocus
+                value={newRideText}
+                onChange={(e) => setNewRideText(e.target.value)}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -66,6 +118,8 @@ export default function WaitTimeForm() {
                 id="parkName"
                 label="Park Name"
                 autoFocus
+                value={newParkText}
+                onChange={(e) => setNewParkText(e.target.value)}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -77,6 +131,8 @@ export default function WaitTimeForm() {
                 label="Wait Time"
                 name="waitTime"
                 autoComplete="wtime"
+                value={newWaitTimeText}
+                onChange={(e) => setNewWaitTimeText(e.target.value)}
               />
             </Grid>
           </Grid>

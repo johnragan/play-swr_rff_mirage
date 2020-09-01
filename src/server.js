@@ -115,7 +115,7 @@ export default function (environment = "development") {
     },
 
     routes() {
-      // this.namespace = "/wdw";
+      // this.namespace = "/api";
 
       this.get("/api/parks", (schema, request) => {
         return schema.parks.all();
@@ -124,10 +124,6 @@ export default function (environment = "development") {
       this.get("/api/rides", (schema) => {
         return schema.rides.all();
       });
-
-      // this.get("/api/rides", () => ({
-      //   rides: [],
-      // }));
 
       this.post("/api/rides", (schema, request) => {
         let attrs = JSON.parse(request.requestBody);
