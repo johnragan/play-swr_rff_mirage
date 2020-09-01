@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { SWRConfig } from "swr";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
@@ -18,9 +19,16 @@ export const createMirageServer = () => {
 
 createMirageServer();
 
+const fetcher = (url) =>
+  fetch(url)
+    .then((res) => res.json())
+    .then((json) => json.rides);
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <SWRConfig value={{ fetcher }}>
+      <App />
+    </SWRConfig>
   </React.StrictMode>,
   document.getElementById("root")
 );

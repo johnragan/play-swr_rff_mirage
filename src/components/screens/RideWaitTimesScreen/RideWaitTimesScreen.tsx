@@ -34,63 +34,28 @@ type Props = {
 const RideWaitTimesScreen: React.FC<Props> = ({ defaultPark }) => {
   const classes = useStyles();
   let [parkId, setParkId] = useState(defaultPark);
-  //let [rides, setRides] = useState([]);
-  const fetcher = (url: string) =>
-    fetch(url)
-      .then((res) => res.json())
-      .then((json) => json.rides);
 
   // @ts-ignore
   const { data: ridesMK } = useSWR(
-    `http://localhost:3000/api/parks/${Parks.MK}/rides`,
-    fetcher
+    `http://localhost:3000/api/parks/${Parks.MK}/rides`
   );
 
   // @ts-ignore
   const { data: ridesEP } = useSWR(
-    `http://localhost:3000/api/parks/${Parks.EP}/rides`,
-    fetcher
+    `http://localhost:3000/api/parks/${Parks.EP}/rides`
   );
 
   // @ts-ignore
   const { data: ridesHS } = useSWR(
-    `http://localhost:3000/api/parks/${Parks.HS}/rides`,
-    fetcher
+    `http://localhost:3000/api/parks/${Parks.HS}/rides`
   );
 
   // @ts-ignore
   const { data: ridesAK } = useSWR(
-    `http://localhost:3000/api/parks/${Parks.AK}/rides`,
-    fetcher
+    `http://localhost:3000/api/parks/${Parks.AK}/rides`
   );
 
   const parkRides = [ridesMK, ridesMK, ridesEP, ridesHS, ridesAK];
-
-  // useEffect(() => {
-  //   let isCurrent = true;
-  //   setRides([]);
-  //   const url = parkId ? `/api/parks/${parkId}/rides` : `/api/rides`;
-
-  //   fetch(url)
-  //     .then((res) => res.json())
-  //     .then((json) => {
-  //       if (isCurrent) {
-  //         setRides(json.rides);
-  //       }
-  //     })
-  //     .catch(() => {
-  //       if (isCurrent) {
-  //         // @ts-ignore
-  //         setError("We couldn't load your rides. Try again soon.");
-  //       }
-  //     });
-
-  //   console.log(`Data is ${data}`);
-
-  //   return () => {
-  //     isCurrent = false;
-  //   };
-  // }, [parkId, data]);
 
   // @ts-ignore
   function RenderCards(rides: RideWaitTimes) {
