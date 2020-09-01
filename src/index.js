@@ -26,7 +26,7 @@ const fetcher = (url) =>
 
 ReactDOM.render(
   <React.StrictMode>
-    <SWRConfig value={{ fetcher }}>
+    <SWRConfig value={{ fetcher, dedupingInterval: 5000 }}>
       <App />
     </SWRConfig>
   </React.StrictMode>,

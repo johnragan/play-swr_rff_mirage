@@ -8,8 +8,17 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import { Parks, getParkById, MK, EP, HS, AK } from "../../constants/parks";
+import {
+  Parks,
+  getParkById,
+  MK,
+  EP,
+  HS,
+  AK,
+  PARK_RIDE_URLS,
+} from "../../constants/parks";
 import { NativeSelect } from "@material-ui/core";
+import { trigger } from "swr";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -69,6 +78,7 @@ export default function WaitTimeForm() {
         setNewRideText("");
         setNewParkText("");
         setNewWaitTimeText("");
+        trigger(PARK_RIDE_URLS[parkId]);
         // @ts-ignore
         //setRides((rides) => [...rides, json.ride]);
         // @ts-ignore

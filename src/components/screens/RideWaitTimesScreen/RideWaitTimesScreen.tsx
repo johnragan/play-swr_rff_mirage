@@ -2,7 +2,18 @@ import React, { useState } from "react";
 import Typography from "@material-ui/core/Typography";
 import useSWR from "swr";
 import WaitTimesCard, { RideWaitTime } from "./WaitTimeCard/WaitTimeCard";
-import { Parks, getParkById, MK, EP, HS, AK } from "../../../constants/parks";
+import {
+  Parks,
+  getParkById,
+  MK,
+  EP,
+  HS,
+  AK,
+  MK_RIDES_URL,
+  EP_RIDES_URL,
+  HS_RIDES_URL,
+  AK_RIDES_URL,
+} from "../../../constants/parks";
 import {
   FormControl,
   InputLabel,
@@ -36,24 +47,16 @@ const RideWaitTimesScreen: React.FC<Props> = ({ defaultPark }) => {
   let [parkId, setParkId] = useState(defaultPark);
 
   // @ts-ignore
-  const { data: ridesMK } = useSWR(
-    `http://localhost:3000/api/parks/${Parks.MK}/rides`
-  );
+  const { data: ridesMK } = useSWR(MK_RIDES_URL);
 
   // @ts-ignore
-  const { data: ridesEP } = useSWR(
-    `http://localhost:3000/api/parks/${Parks.EP}/rides`
-  );
+  const { data: ridesEP } = useSWR(EP_RIDES_URL);
 
   // @ts-ignore
-  const { data: ridesHS } = useSWR(
-    `http://localhost:3000/api/parks/${Parks.HS}/rides`
-  );
+  const { data: ridesHS } = useSWR(HS_RIDES_URL);
 
   // @ts-ignore
-  const { data: ridesAK } = useSWR(
-    `http://localhost:3000/api/parks/${Parks.AK}/rides`
-  );
+  const { data: ridesAK } = useSWR(AK_RIDES_URL);
 
   const parkRides = [ridesMK, ridesMK, ridesEP, ridesHS, ridesAK];
 
