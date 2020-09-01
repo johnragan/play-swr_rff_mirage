@@ -8,6 +8,8 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import { Parks, getParkById, MK, EP, HS, AK } from "../../constants/parks";
+import { NativeSelect } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -36,7 +38,7 @@ export default function WaitTimeForm() {
   let [isSavingRide, setIsSavingRide] = useState();
   //let [rides, setRides] = useState(null);
   let [newWaitTimeText, setNewWaitTimeText] = useState("");
-  let [parkId] = useState(1);
+  let [parkId, setParkId] = useState(1);
   console.log(isAddingRide);
   console.log(isSavingRide);
 
@@ -111,18 +113,24 @@ export default function WaitTimeForm() {
               />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="pname"
-                name="parkName"
-                variant="outlined"
-                required
-                fullWidth
-                id="parkName"
-                label="Park Name"
-                autoFocus
-                value={newParkText}
-                onChange={(e) => setNewParkText(e.target.value)}
-              />
+              <NativeSelect
+                defaultValue={MK}
+                inputProps={{
+                  name: "parkName",
+                  id: "parkName",
+                }}
+                onChange={(e) => {
+                  // @ts-ignore
+                  setNewParkText(getParkById(e.target.value));
+                  // @ts-ignore
+                  setParkId(e.target.value);
+                }}
+              >
+                <option value={Parks.MK}>{MK}</option>
+                <option value={Parks.EP}>{EP}</option>
+                <option value={Parks.HS}>{HS}</option>
+                <option value={Parks.AK}>{AK}</option>
+              </NativeSelect>
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
