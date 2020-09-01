@@ -141,12 +141,16 @@ export default function (environment = "development") {
         return schema.rides.find(id).destroy();
       });
 
-      this.get("/api/parks/:id/rides", (schema, request) => {
-        let parkId = request.params.id;
-        let park = schema.parks.find(parkId);
+      this.get(
+        "/api/parks/:id/rides",
+        (schema, request) => {
+          let parkId = request.params.id;
+          let park = schema.parks.find(parkId);
 
-        return park.rides;
-      });
+          return park.rides;
+        },
+        { timing: 3000 }
+      );
     },
   });
 }

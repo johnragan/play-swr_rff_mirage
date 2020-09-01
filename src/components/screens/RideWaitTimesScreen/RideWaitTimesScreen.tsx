@@ -49,7 +49,7 @@ const RideWaitTimesScreen: React.FC<Props> = ({ defaultPark }) => {
   useEffect(() => {
     let isCurrent = true;
     setRides([]);
-    let url = parkId ? `/api/parks/${parkId}/rides` : `/api/rides`;
+    const url = parkId ? `/api/parks/${parkId}/rides` : `/api/rides`;
 
     fetch(url)
       .then((res) => res.json())
