@@ -13,6 +13,8 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { Form, Field } from "react-final-form";
+// @ts-ignore
+// import RenderCounter from "react-render-counter";
 
 function Copyright() {
   return (
@@ -60,6 +62,15 @@ export default function SignUp() {
   // @ts-ignore
   const required = (value) => (value ? undefined : "Required");
 
+  // @ts-ignore
+  const MyCounterFN = ({ count }) => <div>{count + 1}</div>;
+  // @ts-ignore
+  const MyCounterLN = ({ count }) => <div>{count + 1}</div>;
+  // @ts-ignore
+  const MyCounterEM = ({ count }) => <div>{count + 1}</div>;
+  // @ts-ignore
+  const MyCounterPW = ({ count }) => <div>{count + 1}</div>;
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -85,7 +96,9 @@ export default function SignUp() {
                       <pre>{JSON.stringify(fieldState, undefined, 2)}</pre>
                     )} */}
                     {({ input, meta, placeholder }) => (
-                      <div>
+                      <div className={meta.active ? "active" : ""}>
+                        {/* <RenderCounter initialCount={0} /> */}
+                        <MyCounterFN count={1} />
                         <label>First Name</label>
                         <input {...input} placeholder={placeholder} />
                         {meta.error && meta.touched && (
@@ -105,7 +118,8 @@ export default function SignUp() {
                       <pre>{JSON.stringify(fieldState, undefined, 2)}</pre>
                     )} */}
                     {({ input, meta, placeholder }) => (
-                      <div>
+                      <div className={meta.active ? "active" : ""}>
+                        <MyCounterLN count={1} />
                         <label>Last Name</label>
                         <input {...input} placeholder={placeholder} />
                         {meta.error && meta.touched && (
@@ -125,7 +139,8 @@ export default function SignUp() {
                       <pre>{JSON.stringify(fieldState, undefined, 2)}</pre>
                     )} */}
                     {({ input, meta, placeholder }) => (
-                      <div>
+                      <div className={meta.active ? "active" : ""}>
+                        <MyCounterEM count={1} />
                         <label>Email Address</label>
                         <input {...input} placeholder={placeholder} />
                         {meta.error && meta.touched && (
@@ -145,7 +160,8 @@ export default function SignUp() {
                       <pre>{JSON.stringify(fieldState, undefined, 2)}</pre>
                     )} */}
                     {({ input, meta, placeholder }) => (
-                      <div>
+                      <div className={meta.active ? "active" : ""}>
+                        <MyCounterPW count={1} />
                         <label>Password</label>
                         <input {...input} placeholder={placeholder} />
                         {meta.error && meta.touched && (
