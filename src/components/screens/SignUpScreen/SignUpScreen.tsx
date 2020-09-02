@@ -57,6 +57,8 @@ export default function SignUp() {
     await sleep(500);
     window.alert(JSON.stringify(values, undefined, 2));
   };
+  // @ts-ignore
+  const required = (value) => (value ? undefined : "Required");
 
   return (
     <Container component="main" maxWidth="xs">
@@ -68,7 +70,8 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <Form onSubmit={showResults}>
+        {/* @ts-ignore */}
+        <Form onSubmit={showResults} validate={(values) => {}}>
           {({ handleSubmit, values, submitting }) => (
             <form className={classes.form} noValidate onSubmit={handleSubmit}>
               <Grid container spacing={2}>
@@ -78,6 +81,7 @@ export default function SignUp() {
                     name="firstName"
                     component="input"
                     placeholder="First Name"
+                    validate={required}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -86,6 +90,7 @@ export default function SignUp() {
                     name="lastName"
                     component="input"
                     placeholder="Last Name"
+                    validate={required}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -94,7 +99,12 @@ export default function SignUp() {
                     name="email"
                     component="input"
                     placeholder="Email Address"
-                  />
+                    validate={required}
+                  >
+                    {(fieldState) => (
+                      <pre>{JSON.stringify(fieldState, undefined, 2)}</pre>
+                    )}
+                  </Field>
                 </Grid>
                 <Grid item xs={12}>
                   <label>Password</label>
@@ -102,6 +112,7 @@ export default function SignUp() {
                     name="password"
                     component="input"
                     placeholder="Password"
+                    validate={required}
                   />
                 </Grid>
                 <Grid item xs={12}>
