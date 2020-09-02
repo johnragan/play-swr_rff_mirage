@@ -75,7 +75,7 @@ export default function SignUp() {
         <Form onSubmit={showResults} validate={(values) => {}}>
           {({ handleSubmit, values, submitting }) => (
             <form className={classes.form} noValidate onSubmit={handleSubmit}>
-              <RenderCount />
+              <RenderCount index={0} />
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <Field
@@ -88,7 +88,7 @@ export default function SignUp() {
                     )} */}
                     {({ input, meta, placeholder }) => (
                       <div className={meta.active ? "active" : ""}>
-                        <RenderCount />
+                        <RenderCount index={1} />
                         <label>First Name</label>
                         <input {...input} placeholder={placeholder} />
                         {meta.error && meta.touched && (
@@ -109,7 +109,7 @@ export default function SignUp() {
                     )} */}
                     {({ input, meta, placeholder }) => (
                       <div className={meta.active ? "active" : ""}>
-                        <RenderCount />
+                        <RenderCount index={2} />
                         <label>Last Name</label>
                         <input {...input} placeholder={placeholder} />
                         {meta.error && meta.touched && (
@@ -130,7 +130,7 @@ export default function SignUp() {
                     )} */}
                     {({ input, meta, placeholder }) => (
                       <div className={meta.active ? "active" : ""}>
-                        <RenderCount />
+                        <RenderCount index={3} />
                         <label>Email Address</label>
                         <input {...input} placeholder={placeholder} />
                         {meta.error && meta.touched && (
@@ -151,7 +151,7 @@ export default function SignUp() {
                     )} */}
                     {({ input, meta, placeholder }) => (
                       <div className={meta.active ? "active" : ""}>
-                        <RenderCount />
+                        <RenderCount index={4} />
                         <label>Password</label>
                         <input {...input} placeholder={placeholder} />
                         {meta.error && meta.touched && (
