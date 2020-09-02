@@ -76,44 +76,84 @@ export default function SignUp() {
             <form className={classes.form} noValidate onSubmit={handleSubmit}>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
-                  <label>First Name</label>
                   <Field
                     name="firstName"
-                    component="input"
                     placeholder="First Name"
                     validate={required}
-                  />
+                  >
+                    {/* {(fieldState) => (
+                      <pre>{JSON.stringify(fieldState, undefined, 2)}</pre>
+                    )} */}
+                    {({ input, meta, placeholder }) => (
+                      <div>
+                        <label>First Name</label>
+                        <input {...input} placeholder={placeholder} />
+                        {meta.error && meta.touched && (
+                          <span>{meta.error}</span>
+                        )}
+                      </div>
+                    )}
+                  </Field>
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <label>Last Name</label>
                   <Field
                     name="lastName"
-                    component="input"
                     placeholder="Last Name"
                     validate={required}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <label>Email Address</label>
-                  <Field
-                    name="email"
-                    component="input"
-                    placeholder="Email Address"
-                    validate={required}
                   >
-                    {(fieldState) => (
+                    {/* {(fieldState) => (
                       <pre>{JSON.stringify(fieldState, undefined, 2)}</pre>
+                    )} */}
+                    {({ input, meta, placeholder }) => (
+                      <div>
+                        <label>Last Name</label>
+                        <input {...input} placeholder={placeholder} />
+                        {meta.error && meta.touched && (
+                          <span>{meta.error}</span>
+                        )}
+                      </div>
                     )}
                   </Field>
                 </Grid>
                 <Grid item xs={12}>
-                  <label>Password</label>
+                  <Field
+                    name="email"
+                    placeholder="Email Address"
+                    validate={required}
+                  >
+                    {/* {(fieldState) => (
+                      <pre>{JSON.stringify(fieldState, undefined, 2)}</pre>
+                    )} */}
+                    {({ input, meta, placeholder }) => (
+                      <div>
+                        <label>Email Address</label>
+                        <input {...input} placeholder={placeholder} />
+                        {meta.error && meta.touched && (
+                          <span>{meta.error}</span>
+                        )}
+                      </div>
+                    )}
+                  </Field>
+                </Grid>
+                <Grid item xs={12}>
                   <Field
                     name="password"
-                    component="input"
                     placeholder="Password"
                     validate={required}
-                  />
+                  >
+                    {/* {(fieldState) => (
+                      <pre>{JSON.stringify(fieldState, undefined, 2)}</pre>
+                    )} */}
+                    {({ input, meta, placeholder }) => (
+                      <div>
+                        <label>Password</label>
+                        <input {...input} placeholder={placeholder} />
+                        {meta.error && meta.touched && (
+                          <span>{meta.error}</span>
+                        )}
+                      </div>
+                    )}
+                  </Field>
                 </Grid>
                 <Grid item xs={12}>
                   <FormControlLabel
