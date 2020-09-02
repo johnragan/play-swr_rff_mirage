@@ -6,7 +6,6 @@ import { SelectRouter } from "./routes/SelectRouter";
 // TODO: Add support for storybook tests
 // TODO: Integrate the new Style guide in
 // TODO: Remove the TS Ignore statements
-// TODO: Add SWR Support
 function App() {
   return (
     <div className="App">
