@@ -3,12 +3,9 @@ import Typography from "@material-ui/core/Typography";
 import useSWR from "swr";
 import WaitTimesCard, { RideWaitTime } from "./WaitTimeCard/WaitTimeCard";
 import {
-  Parks,
+  ParkIds,
+  ParkNames,
   getParkById,
-  MK,
-  EP,
-  HS,
-  AK,
   MK_RIDES_URL,
   EP_RIDES_URL,
   HS_RIDES_URL,
@@ -39,28 +36,20 @@ const useStyles = makeStyles((theme) => ({
 type RideWaitTimes = RideWaitTime[];
 
 type Props = {
-  defaultPark: Parks;
+  defaultPark: ParkIds;
 };
 
 const RideWaitTimesScreen: React.FC<Props> = ({ defaultPark }) => {
   const classes = useStyles();
   let [parkId, setParkId] = useState(defaultPark);
 
-  // @ts-ignore
   const { data: ridesMK } = useSWR(MK_RIDES_URL);
-
-  // @ts-ignore
   const { data: ridesEP } = useSWR(EP_RIDES_URL);
-
-  // @ts-ignore
   const { data: ridesHS } = useSWR(HS_RIDES_URL);
-
-  // @ts-ignore
   const { data: ridesAK } = useSWR(AK_RIDES_URL);
 
   const parkRides = [ridesMK, ridesMK, ridesEP, ridesHS, ridesAK];
 
-  // @ts-ignore
   function RenderCards(rides: RideWaitTimes) {
     console.log(`rides is ${rides}`);
     if (!rides) {
@@ -107,10 +96,10 @@ const RideWaitTimesScreen: React.FC<Props> = ({ defaultPark }) => {
               }}
               onChange={handleParkChange}
             >
-              <option value={Parks.MK}>{MK}</option>
-              <option value={Parks.EP}>{EP}</option>
-              <option value={Parks.HS}>{HS}</option>
-              <option value={Parks.AK}>{AK}</option>
+              <option value={ParkIds.MK}>{ParkNames.MK}</option>
+              <option value={ParkIds.EP}>{ParkNames.EP}</option>
+              <option value={ParkIds.HS}>{ParkNames.HS}</option>
+              <option value={ParkIds.AK}>{ParkNames.AK}</option>
             </NativeSelect>
             <FormHelperText>Pick your park</FormHelperText>
           </FormControl>
@@ -120,7 +109,6 @@ const RideWaitTimesScreen: React.FC<Props> = ({ defaultPark }) => {
           <Typography component="h1" variant="h5">
             The following are the wait times for {getParkById(parkId)}:
           </Typography>
-          {/* @ts-ignore */}
           {RenderCards(parkRides[parkId])}
         </Grid>
         <Grid item xs={12} sm={6}>

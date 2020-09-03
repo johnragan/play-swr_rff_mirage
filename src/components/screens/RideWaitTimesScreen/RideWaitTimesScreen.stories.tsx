@@ -1,6 +1,7 @@
 import React from "react";
 import { createMirageServer } from "../../../index";
 import RideWaitTimesScreen from "./RideWaitTimesScreen";
+import { ParkIds } from "../../../constants/parks";
 
 createMirageServer();
 
@@ -11,10 +12,16 @@ export default {
   excludeStories: /.*Data$/,
 };
 
-export const MagicKingdom = () => <RideWaitTimesScreen defaultPark={1} />;
+export const MagicKingdom = () => (
+  <RideWaitTimesScreen defaultPark={ParkIds.MK} />
+);
 
-export const Epcot = () => <RideWaitTimesScreen defaultPark={2} />;
+export const Epcot = () => <RideWaitTimesScreen defaultPark={ParkIds.EP} />;
 
-export const HollywoodStudios = () => <RideWaitTimesScreen defaultPark={3} />;
+export const HollywoodStudios = () => (
+  <RideWaitTimesScreen defaultPark={ParkIds.HS} />
+);
 
-export const AnimalKingdom = () => <RideWaitTimesScreen defaultPark={4} />;
+export const AnimalKingdom = () => (
+  <RideWaitTimesScreen defaultPark={ParkIds.AK} />
+);

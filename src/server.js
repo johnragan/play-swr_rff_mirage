@@ -1,4 +1,4 @@
-import { MK, EP, HS, AK } from "./constants/parks";
+import { ParkNames } from "./constants/parks";
 
 import {
   createServer,
@@ -44,70 +44,70 @@ export default function (environment = "development") {
     },
 
     seeds(server) {
-      const magicKingdomPark = server.create("park", { name: MK });
+      const magicKingdomPark = server.create("park", { name: ParkNames.MK });
       server.create("ride", {
         park: magicKingdomPark,
         ride: "Splash Mountain",
-        land: MK,
+        land: ParkNames.MK,
         waitMinutes: "45",
         id: "1",
       });
       server.create("ride", {
         park: magicKingdomPark,
         ride: "Space Mountain",
-        land: MK,
+        land: ParkNames.MK,
         waitMinutes: "75",
         id: "2",
       });
 
-      const epcotPark = server.create("park", { name: EP });
+      const epcotPark = server.create("park", { name: ParkNames.EP });
       server.create("ride", {
         park: epcotPark,
         ride: "Maelstrom",
-        land: EP,
+        land: ParkNames.EP,
         waitMinutes: "15",
         id: "3",
       });
       server.create("ride", {
         park: epcotPark,
         ride: "Journey Into Imagination",
-        land: EP,
+        land: ParkNames.EP,
         waitMinutes: "35",
         id: "4",
       });
 
       const hollywoodStudiosPark = server.create("park", {
-        name: HS,
+        name: ParkNames.HS,
       });
       server.create("ride", {
         park: hollywoodStudiosPark,
         ride: "Rise of the Resistance",
-        land: HS,
+        land: ParkNames.HS,
         waitMinutes: "190",
         id: "5",
       });
       server.create("ride", {
         park: hollywoodStudiosPark,
         ride: "Tower of Terror",
-        land: HS,
+        land: ParkNames.HS,
         waitMinutes: "13",
         id: "6",
       });
 
       const animalKingdomPark = server.create("park", {
-        name: AK,
+        name: ParkNames.AK,
       });
       server.create("ride", {
         park: animalKingdomPark,
         ride: "Flight of Passage",
-        land: AK,
+        land: ParkNames.AK,
         waitMinutes: "210",
         id: "7",
       });
       server.create("ride", {
         park: animalKingdomPark,
         ride: "Expedition Everest",
-        land: AK,
+        land: ParkNames.AK,
         waitMinutes: "13",
         id: "8",
       });

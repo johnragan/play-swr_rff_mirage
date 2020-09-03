@@ -9,12 +9,9 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import {
-  Parks,
+  ParkIds,
+  ParkNames,
   getParkById,
-  MK,
-  EP,
-  HS,
-  AK,
   PARK_RIDE_URLS,
   MK_RIDES_URL,
   EP_RIDES_URL,
@@ -121,7 +118,7 @@ export default function WaitTimeForm() {
             </Grid>
             <Grid item xs={12} sm={6}>
               <NativeSelect
-                defaultValue={MK}
+                defaultValue={ParkNames.MK}
                 inputProps={{
                   name: "parkName",
                   id: "parkName",
@@ -132,10 +129,10 @@ export default function WaitTimeForm() {
                   setParkId(parkId);
                 }}
               >
-                <option value={Parks.MK}>{MK}</option>
-                <option value={Parks.EP}>{EP}</option>
-                <option value={Parks.HS}>{HS}</option>
-                <option value={Parks.AK}>{AK}</option>
+                <option value={ParkIds.MK}>{ParkNames.MK}</option>
+                <option value={ParkIds.EP}>{ParkNames.EP}</option>
+                <option value={ParkIds.HS}>{ParkNames.HS}</option>
+                <option value={ParkIds.AK}>{ParkNames.AK}</option>
               </NativeSelect>
             </Grid>
             <Grid item xs={12} sm={6}>

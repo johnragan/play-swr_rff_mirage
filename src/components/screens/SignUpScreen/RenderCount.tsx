@@ -3,8 +3,7 @@ import React from "react";
 
 let count = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-// @ts-ignore
-const RenderCount = (props) => {
+const RenderCount = (props: { index: number }) => {
   console.log(props.index);
   return <span>{++count[props.index]}</span>;
 };
