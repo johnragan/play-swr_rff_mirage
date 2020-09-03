@@ -16,6 +16,7 @@
     "@types/react-dom": "^16.9.8",
     "@types/react-router-dom": "^5.1.5",
     "final-form": "^4.20.1",
+    "final-form-focus": "^1.1.2",
     "miragejs": "^0.1.40",
     "mui-rff": "^2.4.2",
     "react": "^16.13.1",

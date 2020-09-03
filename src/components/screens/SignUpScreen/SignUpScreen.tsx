@@ -13,6 +13,8 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { Form, Field, FormSpy } from "react-final-form";
+// @ts-ignore
+import createDecorator from "final-form-focus";
 import RenderCount from "./RenderCount";
 
 function Copyright() {
@@ -61,6 +63,8 @@ export default function SignUp() {
   // @ts-ignore
   const required = (value) => (value ? undefined : "Required");
 
+  const focusOnError = createDecorator();
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -74,6 +78,7 @@ export default function SignUp() {
         {/* @ts-ignore */}
         <Form
           onSubmit={showResults}
+          decorators={[focusOnError]}
           // @ts-ignore
           validate={(values) => {}}
           subscription={{
