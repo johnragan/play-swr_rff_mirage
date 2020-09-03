@@ -12,7 +12,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import { Form, Field } from "react-final-form";
+import { Form, Field, FormSpy } from "react-final-form";
 import RenderCount from "./RenderCount";
 
 function Copyright() {
@@ -72,8 +72,15 @@ export default function SignUp() {
           Sign up
         </Typography>
         {/* @ts-ignore */}
-        <Form onSubmit={showResults} validate={(values) => {}}>
-          {({ handleSubmit, values, submitting }) => (
+        <Form
+          onSubmit={showResults}
+          // @ts-ignore
+          validate={(values) => {}}
+          subscription={{
+            submitting: true,
+          }}
+        >
+          {({ handleSubmit, submitting }) => (
             <form className={classes.form} noValidate onSubmit={handleSubmit}>
               <RenderCount index={0} />
               <Grid container spacing={2}>
@@ -82,6 +89,12 @@ export default function SignUp() {
                     name="firstName"
                     placeholder="First Name"
                     validate={required}
+                    subscription={{
+                      value: true,
+                      active: true,
+                      error: true,
+                      touched: true,
+                    }}
                   >
                     {/* {(fieldState) => (
                       <pre>{JSON.stringify(fieldState, undefined, 2)}</pre>
@@ -103,6 +116,12 @@ export default function SignUp() {
                     name="lastName"
                     placeholder="Last Name"
                     validate={required}
+                    subscription={{
+                      value: true,
+                      active: true,
+                      error: true,
+                      touched: true,
+                    }}
                   >
                     {/* {(fieldState) => (
                       <pre>{JSON.stringify(fieldState, undefined, 2)}</pre>
@@ -124,6 +143,12 @@ export default function SignUp() {
                     name="email"
                     placeholder="Email Address"
                     validate={required}
+                    subscription={{
+                      value: true,
+                      active: true,
+                      error: true,
+                      touched: true,
+                    }}
                   >
                     {/* {(fieldState) => (
                       <pre>{JSON.stringify(fieldState, undefined, 2)}</pre>
@@ -145,6 +170,12 @@ export default function SignUp() {
                     name="password"
                     placeholder="Password"
                     validate={required}
+                    subscription={{
+                      value: true,
+                      active: true,
+                      error: true,
+                      touched: true,
+                    }}
                   >
                     {/* {(fieldState) => (
                       <pre>{JSON.stringify(fieldState, undefined, 2)}</pre>
@@ -180,7 +211,14 @@ export default function SignUp() {
               >
                 Sign Up
               </Button>
-              <pre>{JSON.stringify(values, undefined, 2)}</pre>
+              <FormSpy subscription={{ values: true }}>
+                {({ values }) => (
+                  <pre>
+                    <RenderCount index={3} />
+                    {JSON.stringify(values, undefined, 2)}
+                  </pre>
+                )}
+              </FormSpy>
               <Grid container justify="flex-end">
                 <Grid item>
                   <Link href="#" variant="body2">
