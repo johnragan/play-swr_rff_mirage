@@ -2,7 +2,6 @@ import React from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
-//import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
@@ -53,15 +52,13 @@ const useStyles = makeStyles((theme) => ({
 export default function SignUp() {
   const classes = useStyles();
 
-  // @ts-ignore
-  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-  // @ts-ignore
-  const showResults = async (values) => {
+  const sleep = (ms: number) =>
+    new Promise((resolve) => setTimeout(resolve, ms));
+  const showResults = async (values: any) => {
     await sleep(500);
     window.alert(JSON.stringify(values, undefined, 2));
   };
-  // @ts-ignore
-  const required = (value) => (value ? undefined : "Required");
+  const required = (value: string) => (value ? undefined : "Required");
 
   const focusOnError = createDecorator();
 
@@ -75,12 +72,9 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        {/* @ts-ignore */}
         <Form
           onSubmit={showResults}
           decorators={[focusOnError]}
-          // @ts-ignore
-          validate={(values) => {}}
           subscription={{
             submitting: true,
           }}
@@ -101,9 +95,6 @@ export default function SignUp() {
                       touched: true,
                     }}
                   >
-                    {/* {(fieldState) => (
-                      <pre>{JSON.stringify(fieldState, undefined, 2)}</pre>
-                    )} */}
                     {({ input, meta, placeholder }) => (
                       <div className={meta.active ? "active" : ""}>
                         <RenderCount index={1} />
@@ -128,9 +119,6 @@ export default function SignUp() {
                       touched: true,
                     }}
                   >
-                    {/* {(fieldState) => (
-                      <pre>{JSON.stringify(fieldState, undefined, 2)}</pre>
-                    )} */}
                     {({ input, meta, placeholder }) => (
                       <div className={meta.active ? "active" : ""}>
                         <RenderCount index={2} />
@@ -155,9 +143,6 @@ export default function SignUp() {
                       touched: true,
                     }}
                   >
-                    {/* {(fieldState) => (
-                      <pre>{JSON.stringify(fieldState, undefined, 2)}</pre>
-                    )} */}
                     {({ input, meta, placeholder }) => (
                       <div className={meta.active ? "active" : ""}>
                         <RenderCount index={3} />
@@ -182,9 +167,6 @@ export default function SignUp() {
                       touched: true,
                     }}
                   >
-                    {/* {(fieldState) => (
-                      <pre>{JSON.stringify(fieldState, undefined, 2)}</pre>
-                    )} */}
                     {({ input, meta, placeholder }) => (
                       <div className={meta.active ? "active" : ""}>
                         <RenderCount index={4} />

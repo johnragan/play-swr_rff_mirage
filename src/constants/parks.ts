@@ -24,7 +24,7 @@ export function getParkById(id: Parks) {
   return parksById[id];
 }
 
-export function getParkIdFromPark(name: string) {
+export function getParkIdFromPark(name: string): number {
   // @ts-ignore
   return parkIdsByPark[name];
 }

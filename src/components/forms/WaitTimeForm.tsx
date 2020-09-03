@@ -51,13 +51,8 @@ const useStyles = makeStyles((theme) => ({
 export default function WaitTimeForm() {
   let [newRideText, setNewRideText] = useState("");
   let [newParkText, setNewParkText] = useState("");
-  let [isAddingRide, setIsAddingRide] = useState();
-  let [isSavingRide, setIsSavingRide] = useState();
-  //let [rides, setRides] = useState(null);
   let [newWaitTimeText, setNewWaitTimeText] = useState("");
   let [parkId, setParkId] = useState(1);
-  console.log(isAddingRide);
-  console.log(isSavingRide);
 
   const classes = useStyles();
 
@@ -67,16 +62,12 @@ export default function WaitTimeForm() {
   const { data: ridesAK } = useSWR(AK_RIDES_URL);
   const parkRides = [ridesMK, ridesMK, ridesEP, ridesHS, ridesAK];
 
-  // @ts-ignore
-  function createRide(e) {
+  function createRide(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     if (!newRideText) {
       return;
     }
-
-    // @ts-ignore
-    setIsSavingRide(true);
 
     const values = {
       ride: newRideText,
@@ -96,19 +87,9 @@ export default function WaitTimeForm() {
         setNewParkText("");
         setNewWaitTimeText("");
         trigger(PARK_RIDE_URLS[parkId]);
-        // @ts-ignore
-        //setRides((rides) => [...rides, json.ride]);
-        // @ts-ignore
-        setIsAddingRide(false);
       })
       .catch((e) => {
-        // @ts-ignore
-        setError("Your Ride wasn't saved. Try again.");
         console.error(e);
-      })
-      .finally(() => {
-        // @ts-ignore
-        setIsSavingRide(false);
       });
   }
 
@@ -146,10 +127,9 @@ export default function WaitTimeForm() {
                   id: "parkName",
                 }}
                 onChange={(e) => {
-                  // @ts-ignore
-                  setNewParkText(getParkById(e.target.value));
-                  // @ts-ignore
-                  setParkId(e.target.value);
+                  const parkId = parseInt(e.target.value);
+                  setNewParkText(getParkById(parkId));
+                  setParkId(parkId);
                 }}
               >
                 <option value={Parks.MK}>{MK}</option>

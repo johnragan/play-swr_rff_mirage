@@ -91,12 +91,9 @@ const WaitTimesCard: React.FC<Props> = ({ ride, land, waitMinutes, id }) => {
           onClick={() => {
             console.log(`delete id: ${id}`);
             const parkId = getParkIdFromPark(land);
-            //@ts-ignore
             mutate(
-              //@ts-ignore
               PARK_RIDE_URLS[parkId],
-              //@ts-ignore
-              parkRides[parkId].filter((r) => r.id !== id),
+              parkRides[parkId].filter((r: { id: string }) => r.id !== id),
               false
             );
             fetch(`/api/rides/${id}`, { method: "DELETE" });
